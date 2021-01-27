@@ -1,0 +1,96 @@
+﻿@model IEnumerable<Teste.Grupo>
+
+@{
+    ViewBag.Title = "Produtos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    #grid_cadastro > thead > tr th:nth-child(2) {
+        width: 110px;
+    }
+
+    #grid_cadastro > thead > tr th:nth-child(3) {
+        width: 200px;
+    }
+
+    #cadastro {
+        width: 70%;
+        margin: 0 auto;
+    }
+
+    #cadastro_cabecalho {
+        border-bottom: 1px #dddddd solid;
+    }
+
+    #cadastro_conteudo {
+        margin-top: 20px;
+    }
+
+    #cabecalho_grid {
+        margin-bottom: 20px;
+    }
+
+    #invisivel {
+        display: none;
+    }
+
+    .botao{
+        text-decoration: none;
+        color: white;
+    }
+</style>
+<div id="cadastro">
+    <section id="cadastro_cabecalho">
+        <h1>@ViewBag.Title</h1>
+    </section>
+    <section id="cadastro_conteudo">
+        <div id="cabecalho_grid" class="row">
+            <div class="col-md-12">
+                @Html.ActionLink("Incluir", "Create")
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <table id="grid_cadastro" class="table table-bordered table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>Código</th>
+                            <th>Descrição</th>
+                            <th>Status</th>
+                            <th>Ação</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr data-id="@item.Id">
+                                <td>@item.Codigo</td>
+                                <td>@item.Descricao</td>
+                                <td>@item.Status</td>
+                                <td>
+                                    <div>
+                                    <i class="glyphicon glyphicon-pencil" role="button">
+                                            @Html.ActionLink("Alterar", "Edit", new { id = item.Id })
+                                    </i>
+                                    </div>
+                                    <div>
+                                    <i class="glyphicon glyphicon-trash" role="button">
+                                            @Html.ActionLink("Excluir", "Delete", new { id = item.Id })
+                                    </i>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+</div>
+
+@section Scripts{
+
+
+
+} 
